@@ -1,0 +1,67 @@
+body {
+  background: rgb(207, 236, 248);
+  padding: 50px;
+}
+
+.c1 {
+  .cloud(100px, 1px)
+}
+
+.c2 {
+  .cloud(200px)
+}
+
+.c3 {
+  .cloud(300px)
+}
+
+.c6 {
+  .cloud(600px)
+}
+
+.cloud(@size: 300px, @bsize: 2px, @border:#f0f0f0, @glow: #e1f5fd, @background: white) {
+  position: relative;
+  background: @background;
+  
+  top: round(@size/3*2);
+  
+  height: round(@size/3);
+  width: @size;
+  border-radius: round(@size/6);
+
+  box-shadow:
+    inset @bsize*2 -@bsize*4 @bsize*2 fadeout(@glow, 50%),
+    0px 0px @bsize*5 @bsize*3 fadeout(@border, 30%);
+ 
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    background: @background;
+    border-radius: 50%;
+  }
+  
+  &:before {
+    height: round((@size/3*2)-@bsize*5);
+    width: round((@size/3*2)-@bsize*5);
+  
+    top: round(-(@size/3)-@bsize*5);
+    left: round(@size/10);
+    
+    box-shadow:
+      inset @bsize @bsize @bsize fadeout(@border, 40%),
+      0px -@bsize*3 @bsize*7 fadeout(@border, 50%);
+  }
+  
+  &:after {
+    height: round((@size/8*3));
+    width: round((@size/8*3));
+  
+    top: round(-(@size/6)-@bsize*5);
+    left: round(@size/2);
+  
+    box-shadow:
+      inset @bsize @bsize @bsize fadeout(@border, 40%),
+      0px -@bsize*3 @bsize*7 fadeout(@border, 50%);
+  }
+  
+}
